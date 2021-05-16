@@ -23,6 +23,17 @@ class Lineform{
     T Get(int i){
         return data.Get(i);
     }
+    static int compare(Lineform<T> P1, Lineform<T> P2){
+        if(P1.GetSize() == P2.GetSize()){
+            for (int i = 0; i < P1.GetSize(); i++){
+                if(!(P1.Get(i) == P2.Get(i))){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        else return 0;
+    }
 
     static Lineform<T> sum(Lineform<T> P1, Lineform<T> P2){
         Lineform<T> P3 = Lineform<T>(std::max(P1.GetSize(),P2.GetSize()));
@@ -78,6 +89,10 @@ std::istream & operator >> (std::istream & in, Lineform<T>& a){
 template <typename T>
 Lineform<T> operator + (Lineform<T> a, Lineform<T> b){
     return Lineform<T>::sum(a,b);
+}
+template <typename T>
+Lineform<T> operator - (Lineform<T> a, Lineform<T> b){
+    return Lineform<T>::sum(a, b*= T(-1));
 }
 template<typename T>
 Lineform<T> operator *= (Lineform<T> &a,T b){

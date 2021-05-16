@@ -7,6 +7,9 @@ class Polinomial{
     public:
     Polinomial<T>(int size){
         data =ArraySequence<T>(size);
+        for(int i = 0; i<GetSize();i++){
+            Set(i, T(0));
+        }
     }
     Polinomial<T>(const Polinomial<T> &polinom){
         data = ArraySequence<T>(polinom.data);
@@ -75,12 +78,24 @@ class Polinomial{
         sum +=Get(0);
         return sum;
     }
+
+    Polinomial<T> gorner(Polinomial<T> t){
+        Polinomial<T> sum(1);
+        sum.Set(0,0);
+        for(int i = GetSize() - 1; i >= 1 ;i--){
+            sum = sum + Get(i);
+            sum = t*sum;
+        }
+        sum = sum + Get(0);
+        return sum;
+    }
     void Set(int i, T item) {
         data.Set(i, item);
     }
     T Get(int i){
         return data.Get(i);
     }
+    
     private:
     ArraySequence<T> data;
 };
@@ -106,8 +121,15 @@ template <typename T>
 Polinomial<T> operator + (Polinomial<T> a, Polinomial<T> b){
     return Polinomial<T>::sum(a,b);
 }
+template <typename T>
+Polinomial<T> operator + (Polinomial<T> a, T b){
+    Polinomial<T> P(1);
+    P.Set(0, b);
+    return Polinomial<T>::sum(a,P);
+}
+
 template<typename T>
-Polinomial<T> operator *= (Polinomial<T> &a,T b){
+Polinomial<T> operator *= (Polinomial<T> &a,T &b){
     Polinomial<T>::scalar(a,b);
     return a;
 }
@@ -116,4 +138,5 @@ template<typename T>
 Polinomial<T> operator * (Polinomial<T> a, Polinomial<T> b){
     return Polinomial<T>::composition(a,b);
 }
+
 #endif

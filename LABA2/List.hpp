@@ -163,7 +163,7 @@ template<typename T>
 LinkedList<T>* LinkedList<T>::GetSubLinkedList(int startIndex,int endIndex){
     if(startIndex < 0 || endIndex < 0 || startIndex >= Size || endIndex >=Size)
         throw "\nGetSubLinkedList Message : Index Out Of Range\n";
-    std::cout<<"\nGetSubLinkedList\n";
+    //std::cout<<"\nGetSubLinkedList\n";
     Node<T>* current = this->head;
     for (int i = 0; i <=startIndex; ++i) {
         current = current->pNext;

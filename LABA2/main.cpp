@@ -35,7 +35,7 @@ int main(){
                 break;
             }
             case 2:{
-                std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch(choose){
@@ -52,7 +52,7 @@ int main(){
                         std::cout<< "Entter Polinomial\n";
                         std::cin >> P2;
                         Polinomial<double> P3 = P1 + P2;
-                        std::cout << "Result: " << P3 <<"\n";
+                        std::cout << "Result factors: " << P3 <<"\n";
                         P1.Delete();
                         P2.Delete();
                         P3.Delete();
@@ -72,7 +72,7 @@ int main(){
                         std::cout<< "Entter Polinomial\n";
                         std::cin >> P2;
                         Polinomial<std::complex<double>> P3 = P1 + P2;
-                        std::cout << "Result: " << P3 <<"\n";
+                        std::cout << "Result factors: " << P3 <<"\n";
                         P1.Delete();
                         P2.Delete();
                         P3.Delete();
@@ -86,7 +86,7 @@ int main(){
                 break;   
             }
             case 3:{
-                std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch (choose)
@@ -96,15 +96,15 @@ int main(){
                         std::cout<< "Enter degree\n";
                         std:: cin >> n;
                         Polinomial<double> P1(n+1);
-                        std::cout<< "Entter Polinomial\n";
+                        std::cout<< "Enter Polinomial\n";
                         std::cin >> P1;
                         std::cout<< "Enter degree\n";
                         std:: cin >> n;
                         Polinomial<double> P2(n+1);
-                        std::cout<< "Entter Polinomial\n";
+                        std::cout<< "Enter Polinomial\n";
                         std::cin >> P2;
                         Polinomial<double> P3 = P1 * P2;
-                        std::cout << "Result: " << P3 <<"\n";
+                        std::cout << "Result factors: " << P3 <<"\n";
                         P1.Delete();
                         P2.Delete();
                         P3.Delete();
@@ -116,15 +116,15 @@ int main(){
                         std::cout<< "Enter degree\n";
                         std:: cin >> n;
                         Polinomial<std::complex<double>> P1(n+1);
-                        std::cout<< "Entter Polinomial\n";
+                        std::cout<< "Enter Polinomial\n";
                         std::cin >> P1;
                         std::cout<< "Enter degree\n";
                         std:: cin >> n;
                         Polinomial<std::complex<double>> P2(n+1);
-                        std::cout<< "Entter Polinomial\n";
+                        std::cout<< "Enter Polinomial\n";
                         std::cin >> P2;
                         Polinomial<std::complex<double>> P3 = P1 * P2;
-                        std::cout << "Result: " << P3 <<"\n";
+                        std::cout << "Result factors: " << P3 <<"\n";
                         P1.Delete();
                         P2.Delete();
                         P3.Delete();
@@ -183,39 +183,43 @@ int main(){
                     break;    
                 }
             case 5:{
-                std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch (choose)
                 {
                     case 1:{
-                        int n;
-                        double a,b;
+                        int n1,n2;
                         std::cout<< "Enter degree\n";
-                        std:: cin >> n;
-                        Polinomial<double> P1(n+1);
-                        std::cout<< "Entter Polinomial\n";
+                        std:: cin >> n1;
+                        Polinomial<double> P1(n1+1);
+                        std::cout<< "Enter Polinomial\n";
                         std::cin >> P1;
-                        std::cout<< "Enter scalar\n";
-                        std:: cin >> a;
-                        b = P1.gorner(a);
-                        std::cout << "Result: " << b <<"\n";
+                        std::cout<< "Enter degree\n";
+                        std:: cin >> n2;
+                        Polinomial<double> P2(n2+1);
+                        std::cout<< "Enter Polinomial\n";
+                        std::cin >> P2;
+                        Polinomial<double> c = P1.gorner(P2);
+                        std::cout << "Result factors: " << c <<"\n";
                         P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
                     case 2:{
-                        int n;
-                        std::complex<double> a,b;
+                        int n1, n2;
                         std::cout<< "Enter degree\n";
-                        std:: cin >> n;
-                        Polinomial<std::complex<double>> P1(n+1);
-                        std::cout<< "Entter Polinomial\n";
+                        std:: cin >> n1;
+                        Polinomial<std::complex<double>> P1(n1+1);
+                        std::cout<< "Enter Polinomial\n";
                         std::cin >> P1;
-                        std::cout<< "Enter scalar\n";
-                        std:: cin >> a;
-                        b = P1.gorner(a);
-                        std::cout << "Result: " << b <<"\n";
+                        std::cout<< "Enter degree\n";
+                        std:: cin >> n2;
+                        Polinomial<std::complex<double>> P2(n1+1);
+                        std::cout<< "Enter Polinomial\n";
+                        std::cin >> P2;
+                        Polinomial<std::complex<double>> c = P1.gorner(P2);
+                        std::cout << "Result factors: " << c <<"\n";
                         P1.Delete();
                         CIN_FLUSH;
                         break;
@@ -234,7 +238,7 @@ int main(){
                 switch(choose){
                     case 1:{
                         int n;
-                        std::cout<< "Enter dimen\n";
+                        std::cout<< "Enter dimension\n";
                         std:: cin >> n;
                         Lineform<double> P1(n);
                         std::cout<< "Entter Linefom\n";
@@ -245,7 +249,7 @@ int main(){
                         std::cout<< "Entter Linefom\n";
                         std::cin >> P2;
                         Lineform<double> P3 = P1 + P2;
-                        std::cout << "Result: " << P3 <<"\n";
+                        std::cout << "Result factors: " << P3 <<"\n";
                         P1.Delete();
                         P2.Delete();
                         P3.Delete();
@@ -254,7 +258,7 @@ int main(){
                         }
                     case 2:{
                         int n;
-                        std::cout<< "Enter degree\n";
+                        std::cout<< "Enter dimension\n";
                         std:: cin >> n;
                         Lineform<std::complex<double>> P1(n);
                         std::cout<< "Entter Linefom\n";
@@ -265,7 +269,7 @@ int main(){
                         std::cout<< "Entter Linefom\n";
                         std::cin >> P2;
                         Lineform<std::complex<double>> P3 = P1 + P2;
-                        std::cout << "Result: " << P3 <<"\n";
+                        std::cout << "Result factors: " << P3 <<"\n";
                         P1.Delete();
                         P2.Delete();
                         P3.Delete();
@@ -295,7 +299,7 @@ int main(){
                         std::cout<< "Enter scalar\n";
                         std:: cin >> a;
                         P1 *= a;
-                        std::cout << "Result: " << P1 <<"\n";
+                        std::cout << "Result factors: " << P1 <<"\n";
                         P1.Delete();
                         CIN_FLUSH;
                         break;
@@ -311,7 +315,7 @@ int main(){
                         std::cout<< "Enter scalar\n";
                         std:: cin >> a;
                         P1 *= a;
-                        std::cout << "Result: " << P1 <<"\n";
+                        std::cout << "Result factors: " << P1 <<"\n";
                         P1.Delete();
                         CIN_FLUSH;
                         break;
@@ -341,7 +345,7 @@ int main(){
                         Lineform<double> P2(n);
                         std:: cin >> P2;
                         b = P1.value(P2);
-                        std::cout << "Result: " << b <<"\n";
+                        std::cout << "Result factors: " << b <<"\n";
                         P1.Delete();
                         CIN_FLUSH;
                         break;
