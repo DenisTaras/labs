@@ -9,10 +9,10 @@ public:
     virtual Sequence<T>* GetSubsequence(int startIndex,int endIndex) = 0;
     virtual Sequence<T>* Concat(Sequence<T>* list) = 0;
 
-    virtual T GetFirst() = 0;
-    virtual T GetLast() = 0;
-    virtual T Get(int index) = 0;
-    virtual int GetLength() = 0;
+    virtual T GetFirst() const = 0;
+    virtual T GetLast() const = 0;
+    virtual T Get(int index) const = 0;
+    virtual int GetLength() const = 0;
 
     virtual void Append(T item) = 0;
     virtual void Set(int index,T item) = 0;
@@ -50,16 +50,16 @@ public:
         DynamicArray<T>* tmp = new DynamicArray<T>(items,list.GetLength());
         data = *tmp;
     }
-    int GetLength(){
+    int GetLength() const{
         return data.GetSize();
     }
-    T Get(int index){
+    T Get(int index) const{
         return data.Get(index);
     }
-    T GetFirst(){
+    T GetFirst() const{
         return data.Get(0);
     }
-    T GetLast(){
+    T GetLast() const{
         return data.Get(data.GetSize()-1);
     }
     void Set(int index, T item){
@@ -87,6 +87,17 @@ public:
         data.Print();
     }
 
+    static int compare(ArraySequence<T> P1, ArraySequence<T> P2){
+        if(P1.GetLength() == P2.GetLength()){
+            for (int i = 0; i < P1.GetLength(); i++){
+                if(!(P1.Get(i) == P2.Get(i))){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        else return 0;
+    }
     ArraySequence<T>* GetSubsequence(int startIndex,int endIndex){
         T* items = (T*)malloc(sizeof(T)*(endIndex-startIndex));
         for (int i = startIndex; i < endIndex; ++i) {
@@ -114,10 +125,27 @@ public:
         }
 
     }
+
+
 private:
     DynamicArray<T> data;
 };
-
+template<typename T>
+std::ostream & operator << (std::ostream & out, const Sequence<T>& a){
+    for(int i = 0; i < a.GetLength();++i){
+        out << a.Get(i) << " ";
+    }
+    return out;
+}
+template<typename T>
+std::istream & operator >> (std::istream & in, ArraySequence<T>& a){
+    T q;
+    for(int i = 0; i < a.GetLength();i++){
+        in >> q;
+        a.Set(i,q);
+    }
+    return in;
+}
 template<typename T>
 class LinkedListSequence : public Sequence<T>{
 public:
@@ -161,16 +189,29 @@ public:
 
         return result;
     }
-    int GetLength(){
+
+        static int compare(LinkedListSequence<T> P1, LinkedListSequence<T> P2){
+        if(P1.GetLength() == P2.GetLength()){
+            for (int i = 0; i < P1.GetLength(); i++){
+                if(!(P1.Get(i) == P2.Get(i))){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        else {return 0;}
+    }
+
+    int GetLength() const{
         return data.GetLength();
     }
-    T GetFirst(){
+    T GetFirst() const{
         return data.GetFirst();
     }
-    T GetLast(){
+    T GetLast() const{
         return data.GetLast();
     }
-    T Get(int index){
+    T Get(int index) const{
         return data.Get(index);
     }
     void Append(T item){
@@ -188,6 +229,10 @@ public:
     void Print(){
         data.print_from_begin();
     }
+    void Set(int index, T data1){
+        data.Set(data1, index);
+    }
+
 private:
     LinkedList<T> data;
 };

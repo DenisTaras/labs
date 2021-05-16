@@ -24,10 +24,11 @@ public:
     LinkedList(const LinkedList<T>& LinkedList );
     ~LinkedList();
 
-    int GetLength(){return Size;}
-    T GetFirst();
-    T GetLast();
-    T Get(int index);
+    int GetLength() const{return Size;}
+    T GetFirst() const;
+    T GetLast() const;
+    T Get(int index) const;
+    void Set(T data, int index);
 
     LinkedList<T>* GetSubLinkedList(int startIndex,int endIndex);
     LinkedList<T>* Concat(LinkedList<T>* LinkedList);
@@ -65,7 +66,7 @@ LinkedList<T> :: LinkedList(){
     head = nullptr;
 }
 
-template<typename T>//считывание значений из переданного массива
+template<typename T>
 LinkedList<T> :: LinkedList(T* items,int count){
     if(items == nullptr){
         Size = 0;
@@ -103,7 +104,7 @@ LinkedList<T>* LinkedList<T>::Concat(LinkedList<T>* list){
 }
 
 template<typename T>
-T LinkedList<T> ::Get(int index){
+T LinkedList<T> ::Get(int index) const{
     if(index < 0 || index >= Size)
         throw "\nGet Message : Index Out Of Range\n";
 
@@ -123,9 +124,27 @@ T LinkedList<T> ::Get(int index){
     return current->data;
 
 }
+template<typename T>
+void LinkedList<T> ::Set(T data,int index){
+     if(index < 0 || index >= Size)
+        throw "\nGet Message : Index Out Of Range\n";
+    Node<T>* current;
+    if(index < Size/2){
+        current = head;
+        for (int i = 0; i < index; ++i) {
+            current = current->pNext;
+        }
+    }else{
+        current = tail;
+        for (int i = 0; i < Size-index-1; ++i) {
+            current = current->pPrev;
+        }
+    }
+    current->data=data;
+}
 
 template<typename T>
-T LinkedList<T> ::GetFirst() {
+T LinkedList<T> ::GetFirst()  const{
     if(Size == 0)
         throw "\nGetFirst Message : Index Out Of Range\n";
     std::cout<<"\nGetFirst:\n";
@@ -133,7 +152,7 @@ T LinkedList<T> ::GetFirst() {
 }
 
 template<typename T>
-T LinkedList<T> ::GetLast(){
+T LinkedList<T> ::GetLast() const{
     if(Size == 0)
         throw "\nGetLast Message : Index Out Of Range\n";
     std::cout<<"\nGetLast:\n";

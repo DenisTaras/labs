@@ -67,7 +67,7 @@ public:
         m_size = newSize;
     }
 
-    T Get(int index){
+    T Get(int index) const{
         if(index < 0 || index >= m_capacity)
             throw "\nGet Message : Index Out Of Range\n";
         return m_data[index];

@@ -42,9 +42,9 @@ class Polinomial{
     }
     static Polinomial<T> composition(Polinomial<T> P1, Polinomial<T> P2){
         Polinomial<T> P3 = Polinomial<T>(P1.GetSize() + P2.GetSize() - 1);
-        for(int i = 0; i < P1.GetSize();i++){
-            for(int j = 0; j < P2.GetSize() ;j++){
-                P3.Set(i+j, P1.Get(i)*P2.Get(j));
+        for(int i = 0; i < P1.GetSize(); i++){
+            for(int j = 0; j < P2.GetSize(); j++){
+                P3.Set(i+j, P3.Get(i+j) + P1.Get(i)*P2.Get(j));
             }
         }
         return P3;
@@ -54,6 +54,18 @@ class Polinomial{
             P1.Set(i, P1.Get(i)*a);
         }
     }
+    static int compare(Polinomial<T> P1, Polinomial<T> P2){
+        if(P1.GetSize() == P2.GetSize()){
+            for (int i = 0; i < P1.GetSize(); i++){
+                if(!(P1.Get(i) == P2.Get(i))){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        else return 0;
+    }
+
     T gorner(T t){
         T sum = 0;
         for(int i = GetSize() - 1; i >= 1 ;i--){
