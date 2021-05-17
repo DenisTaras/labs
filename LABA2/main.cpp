@@ -4,7 +4,7 @@
 #include <iostream>
 #include <complex>
 #define CIN_FLUSH if (std::cin.peek()) std::cin.ignore()
-const std::string MSG[] = {"1.EXIT  \n", "2. SumP  \n", "3. CompositionP  \n" , "4. ScalarP  \n" , "5. ValueP  \n","6. SumL  \n", "7. ScalarL  \n", "8. ValueP  \n" };
+const std::string MSG[] = {"1.EXIT  \n", "2. SumP  \n", "3. CompositionP  \n" , "4. ScalarP  \n" , "5. ValueP  \n","6. SumL  \n", "7. ScalarL  \n", "8. ValueL  \n" };
 const int SMSG = 8;
 int getmenu() {
     std::string error = "\n";
