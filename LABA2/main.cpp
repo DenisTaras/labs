@@ -138,7 +138,7 @@ int main(){
                 break;
             }
             case 4:{
-                std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch (choose)
@@ -232,7 +232,7 @@ int main(){
                 break;    
                 }
             case 6:{
-                std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch(choose){
@@ -283,7 +283,7 @@ int main(){
                 break;   
             }
             case 7:{
-                 std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                 std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch (choose)
@@ -328,7 +328,7 @@ int main(){
                     break;    
             }
             case 8:{
-                 std::cout <<"Choose type:\n 1.Integer\n 2.Complex\n";
+                 std::cout <<"Choose type:\n 1.Double\n 2.Complex\n";
                 int choose;
                 std::cin >> choose;
                 switch (choose)
