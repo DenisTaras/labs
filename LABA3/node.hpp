@@ -45,7 +45,7 @@ class Tree{
 
     void insert(TK key,TV vall){
         if(root == nullptr){
-        node<TV,TK>* new_node = new node<TK,TV>;
+        node<TV,TK>* new_node = new node<TV,TK>;
         new_node->father=nullptr;
         new_node->rson =nullptr;
         new_node->lson=nullptr;
@@ -94,6 +94,45 @@ class Tree{
         }while(!((curr->father == nullptr) && (curr->rson == prev)));
     }
 
+    Tree<TV,TK> * mapNode(node<TV,TK>(*f)(node<TV,TK> elem)){
+        node<TV,TK> * curr = root;
+        node<TV,TK> * lastNode = nullptr;
+        Tree<TV,TK> * newtree = new Tree();
+
+        while(curr != nullptr){
+            if(lastNode == curr->father){
+                if(curr->lson){
+                    lastNode = curr;
+                    curr = curr->lson;
+                } else if (curr->rson){
+                    lastNode = curr;
+                    curr = curr->rson;
+                } else {
+                    node<TV,TK> newnode = f(*curr);
+                    newtree->insert(newnode->key, newnode->data);
+                    lastNode = curr;
+                    curr = curr->father;
+                }
+            } else if(lastNode == curr->lson){
+                if(curr->right){
+                    lastNode = curr;
+                    curr = curr->rson;
+                } else {
+                    node<TV,TK> newnode = f(*curr);
+                    newtree->insert(newnode->key, newnode->data);
+                    lastNode = curr;
+                    curr = curr->father;
+                }
+            } else if(lastNode == curr->rson){
+                node<TV,TK> newnode = f(*curr);
+                newtree->insert(newnode->key, newnode->data);
+                lastNode = curr;
+                curr = curr->father;
+            }
+        }
+        return newtree;
+    }
+
     Tree<TV,TK> * where(bool(*f)(TV elem)){
     node<TV,TK> * curr = root;
     node<TV,TK> * lastNode = nullptr;
@@ -108,7 +147,7 @@ class Tree{
                 curr = curr->rson;
             } else {
                 if(f(curr->data)){
-                    newtree->insertat(curr->key, curr->data);
+                    newtree->insert(curr->key, curr->data);
                 }
                 lastNode = curr;
                 curr = curr->father;
@@ -119,14 +158,14 @@ class Tree{
                 curr = curr->rson;
             } else {
                 if(f(curr->data)){
-                    newtree->insertat(curr->key,curr->data);
+                    newtree->insert(curr->key,curr->data);
                 }
                 lastNode = curr;
                 curr = curr->father;
             }
         } else if(lastNode == curr->rson){
             if(f(curr->data)){
-                newtree->insertat(curr->key,curr->data);
+                newtree->insert(curr->key,curr->data);
             }
             lastNode = curr;
             curr = curr->father;
@@ -164,12 +203,100 @@ class Tree{
         }while(!((curr->father == nullptr) && (curr->rson == prev)));
     }
 
+    Tree<TV,TK> * subTree(int key){
+        Tree<TV,TK> newtree = new Tree();
+        node<TV,TK> * ptr = find(key);
+        if(!ptr){
+            throw "subTree not founded";
+        }
+        node<TV,TK> * curr = ptr;
+        node<TV,TK> * lastNode = ptr->father;
+        while(curr != ptr->father){
+            if(lastNode == curr->father){
+                if(curr->left){
+                    lastNode = curr;
+                    curr = curr->lson;
+                } else if (curr->rson){
+                    lastNode = curr;
+                    curr = curr->rson;
+                } else {
+                    newtree->insert(curr->key, curr->data);
+                    lastNode = curr;
+                    curr = curr->father;
+                }
+            } else if(lastNode == curr->lson){
+                if(curr->right){
+                    lastNode = curr;
+                    curr = curr->rson;
+                } else {
+                    newtree->insert(curr->key,curr->data);
+                    lastNode = curr;
+                    curr = curr->father;
+                }
+            } else if(lastNode == curr->right){
+                newtree->insert(curr->key,curr->data);
+                lastNode = curr;
+                curr = curr->father;
+            }
+        }
+        return newtree;
+    }
+
+        node<TV,TK> * foundNodels(std::string path){
+        node<TV,TK> * curr = root;
+        for(int i = 0; i < path.length();i++){
+            if(path[i] == 'r'){
+                if(curr){
+                    curr = curr->rson;
+                }else{
+                    return nullptr;
+                }
+            } else if(path[i] == 'l'){
+                if(curr){
+                    curr = curr->lson;
+                } else {
+                    return nullptr;
+                }
+            }
+        }
+        return curr;
+    }
+
+    node<TV,TK> * foundNodelsd(std::string path, int key){
+        node<TV,TK> * curr = find(key);
+        if(!curr){
+            return nullptr;
+        }
+        for(int i = 0; i < path.length();i++){
+            if(path[i] == 'r'){
+                if(curr){
+                    curr = curr->rson;
+                }else{
+                    return nullptr;
+                }
+            } else if(path[i] == 'l'){
+                if(curr){
+                    curr = curr->lson;
+                } else {
+                    return nullptr;
+                }
+            } else if(path[i] == 'p'){
+                if(curr){
+                    curr = curr->father;
+                } else {
+                    return nullptr;
+                }
+            }
+        }
+        return curr;
+    }
+
     protected:
     void delete_node_rec(node<TV,TK>* now){
         if(now == nullptr){
             throw "Key doesn't found";
         }
-            if(now->rson == nullptr && now->lson == nullptr){
+        if(now->rson == nullptr && now->lson == nullptr){
                 if(now->father->rson == now){
                     now->father->rson = nullptr;
                 }
