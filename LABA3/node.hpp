@@ -69,19 +69,19 @@ class Tree{
         node<TV,TK>* curr = root;
         node<TV,TK>* prev = nullptr;
         do{
-            if((!curr->lson) && (!curr->rson) && (!curr->father)){// если только 1 элемент
+            if((!curr->lson) && (!curr->rson) && (!curr->father)){
                 funk(&(curr->data));
                 return;
             }
-            else if((curr->lson) && (curr->rson != prev) && (curr->lson != prev)){ //down left
+            else if((curr->lson) && (curr->rson != prev) && (curr->lson != prev)){ 
                 prev = curr;
                 curr = curr->lson;
             }
-            else if((curr->rson) && (curr->rson != prev) && ((curr->lson == prev) || (!(curr->lson)))){// right down
+            else if((curr->rson) && (curr->rson != prev) && ((curr->lson == prev) || (!(curr->lson)))){
                 prev = curr;
                 curr = curr->rson;
             }
-            else if ((!curr->lson) && (!curr->rson)){  //last 
+            else if ((!curr->lson) && (!curr->rson)){  
                 funk(&(curr->data));
                 prev = curr;
                 curr = curr->father;

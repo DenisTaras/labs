@@ -17,7 +17,7 @@ bool g(int a){
 
 void testadd(){
     std::ofstream out("tableadd.txt");
-    for(int N = 10; N < 1000000; N+=1000){
+    for(int N = 10; N < 100000; N+=1000){
         Tree<int,int> a;
         int * b = new int[N];
         for(int i = 0; i < N; i ++){
@@ -36,7 +36,7 @@ void testadd(){
 
 void testdelete(){
     std::ofstream out("tabledelete.txt");
-    for(int N = 10; N < 1000000; N+=1000){
+    for(int N = 10; N < 100000; N+=1000){
         Tree<int,int> a;
         for(int i = 0; i < N + 1000; i ++){
             a.insert(i, 7);
@@ -54,7 +54,7 @@ void testdelete(){
 
 void testfound(){
     std::ofstream out("tablefound.txt");
-    for(int N = 10; N < 1000000; N+=1000){
+    for(int N = 10; N < 100000; N+=1000){
         Tree<int,int> a;
         for(int i = 0; i < N + 1000; i ++){
             a.insert(i, 7);

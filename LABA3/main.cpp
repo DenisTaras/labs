@@ -9,6 +9,7 @@
 #include <cctype>
 #include <vector>
 #include <locale>
+#include <windows.h>
 
 static std::string FindGrop;
 static std::string FindFirst;
@@ -49,13 +50,16 @@ void PrintStudent(Student * elem){
 
 void help(){
 	std::cout << "find <type> [arg] -for search in database " << std::endl;
-	std::cout << "rlist [num] -for print response" << std::endl;
+	std::cout << "query [num] -for print response" << std::endl;
 	std::cout << "help -for this massage" << std::endl;
 	std::cout << "q - for exit" << std::endl;
 }
 
+
 int main(int argc, char ** argv){
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+//    setlocale(LC_ALL, "Russian");
 	if(argc == 1){
 		std::vector<Tree<Student, int> *> responsis;
 		bool exist = false;
@@ -172,7 +176,7 @@ int main(int argc, char ** argv){
 				exist = true;
 			} else if(funct == "help"){
 				help();
-			}else if(funct == "rlist"){
+			}else if(funct == "query"){
 				unsigned int param;
 				stream >> param;
 				if((param < responsis.size() + 1) && (param > 0)){
