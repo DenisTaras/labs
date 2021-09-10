@@ -25,20 +25,11 @@ public:
 template<typename T>
 class ArraySequence : public Sequence<T>{
 public:
-    ArraySequence(){
-        data = DynamicArray<T>();
-    }
-    ArraySequence(int size){
-        data = DynamicArray<T>(size);
-    }
-    ArraySequence(T* item,int count){
-        data = DynamicArray<T>(item,count);
+    ArraySequence(): data() {}
+    ArraySequence(int size): data(size) {}
+    ArraySequence(T* item,int count): data(item, count) {}
 
-    }
-
-    ArraySequence(const ArraySequence<T> &array){
-        data = DynamicArray<T>(array.data);
-    }
+    ArraySequence(const ArraySequence<T> &array) : data(array.data){}
 
     ArraySequence(LinkedList<T>& list){
         T* items;
@@ -80,9 +71,7 @@ public:
         }
         data.Set(index,item);
     }
-    void Delete(){
-        data.Delete();
-    }
+
     void Print(){
         data.Print();
     }

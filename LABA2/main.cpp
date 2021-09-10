@@ -53,9 +53,6 @@ int main(){
                         std::cin >> P2;
                         Polinomial<double> P3 = P1 + P2;
                         std::cout << "Result factors: " << P3 <<"\n";
-                        P1.Delete();
-                        P2.Delete();
-                        P3.Delete();
                         CIN_FLUSH;
                         break;
                         }
@@ -73,9 +70,6 @@ int main(){
                         std::cin >> P2;
                         Polinomial<std::complex<double>> P3 = P1 + P2;
                         std::cout << "Result factors: " << P3 <<"\n";
-                        P1.Delete();
-                        P2.Delete();
-                        P3.Delete();
                         CIN_FLUSH;
                         break;}
                     default:{
@@ -105,9 +99,6 @@ int main(){
                         std::cin >> P2;
                         Polinomial<double> P3 = P1 * P2;
                         std::cout << "Result factors: " << P3 <<"\n";
-                        P1.Delete();
-                        P2.Delete();
-                        P3.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -125,9 +116,6 @@ int main(){
                         std::cin >> P2;
                         Polinomial<std::complex<double>> P3 = P1 * P2;
                         std::cout << "Result factors: " << P3 <<"\n";
-                        P1.Delete();
-                        P2.Delete();
-                        P3.Delete();
                         CIN_FLUSH;
                         break;}
                     default:{
@@ -155,7 +143,6 @@ int main(){
                         std:: cin >> a;
                         P1 *= a;
                         std::cout << "Result: " << P1 <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -171,7 +158,6 @@ int main(){
                         std:: cin >> a;
                         P1 *= a;
                         std::cout << "Result: " << P1 <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -202,7 +188,6 @@ int main(){
                         std::cin >> P2;
                         Polinomial<double> c = P1.gorner(P2);
                         std::cout << "Result factors: " << c <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -220,7 +205,6 @@ int main(){
                         std::cin >> P2;
                         Polinomial<std::complex<double>> c = P1.gorner(P2);
                         std::cout << "Result factors: " << c <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -250,9 +234,6 @@ int main(){
                         std::cin >> P2;
                         Lineform<double> P3 = P1 + P2;
                         std::cout << "Result factors: " << P3 <<"\n";
-                        P1.Delete();
-                        P2.Delete();
-                        P3.Delete();
                         CIN_FLUSH;
                         break;
                         }
@@ -270,9 +251,6 @@ int main(){
                         std::cin >> P2;
                         Lineform<std::complex<double>> P3 = P1 + P2;
                         std::cout << "Result factors: " << P3 <<"\n";
-                        P1.Delete();
-                        P2.Delete();
-                        P3.Delete();
                         CIN_FLUSH;
                         break;}
                     default:{
@@ -300,7 +278,6 @@ int main(){
                         std:: cin >> a;
                         P1 *= a;
                         std::cout << "Result factors: " << P1 <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -316,7 +293,6 @@ int main(){
                         std:: cin >> a;
                         P1 *= a;
                         std::cout << "Result factors: " << P1 <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -346,7 +322,6 @@ int main(){
                         std:: cin >> P2;
                         b = P1.value(P2);
                         std::cout << "Result factors: " << b <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }
@@ -363,7 +338,6 @@ int main(){
                         std:: cin >> P2;
                         b = P1.value(P2);
                         std::cout << "Result: " << b <<"\n";
-                        P1.Delete();
                         CIN_FLUSH;
                         break;
                     }

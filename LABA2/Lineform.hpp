@@ -5,17 +5,12 @@
 template<typename T>
 class Lineform{
     public:
-    Lineform<T>(int size){
-        data =ArraySequence<T>(size);
-    }
-    Lineform<T>(const Lineform<T> &polinom){
-        data = ArraySequence<T>(polinom.data);
-    }
+    Lineform<T>(int size) : data(size) {}
+
+    Lineform<T>(const Lineform<T> &polinom) : data(polinom.data){}
+
     int GetSize(){
         return data.GetLength();
-    }
-    void Delete(){
-        data.Delete();
     }
        void Set(int i, T item) {
         data.Set(i, item);
@@ -23,7 +18,7 @@ class Lineform{
     T Get(int i){
         return data.Get(i);
     }
-    static int compare(Lineform<T> P1, Lineform<T> P2){
+    static int compare(Lineform<T>& P1, Lineform<T>& P2){
         if(P1.GetSize() == P2.GetSize()){
             for (int i = 0; i < P1.GetSize(); i++){
                 if(!(P1.Get(i) == P2.Get(i))){
@@ -35,7 +30,7 @@ class Lineform{
         else return 0;
     }
 
-    static Lineform<T> sum(Lineform<T> P1, Lineform<T> P2){
+    static Lineform<T> sum(Lineform<T>& P1, Lineform<T>& P2){
         Lineform<T> P3 = Lineform<T>(std::max(P1.GetSize(),P2.GetSize()));
         if(P1.GetSize() >= P2.GetSize()){
             for(int i = 0; i < P2.GetSize() ; i++){
@@ -60,7 +55,7 @@ class Lineform{
             P1.Set(i, P1.Get(i)*a);
         }
     }
-    T value(Lineform<T> t){
+    T value(Lineform<T>& t){
         T sum = 0;
         for(int i = 0; i < GetSize() ;i++){
             sum +=Get(i)*t.Get(i);
@@ -79,19 +74,19 @@ std::ostream & operator << (std::ostream & out, Lineform<T> a){
 }
 template <typename T>
 std::istream & operator >> (std::istream & in, Lineform<T>& a){
-    T q;
     for(int i = 0; i < a.GetSize();i++){
+        T q;
         in >> q;
         a.Set(i,q);
     }
     return in;
 }
 template <typename T>
-Lineform<T> operator + (Lineform<T> a, Lineform<T> b){
+Lineform<T> operator + (Lineform<T>& a, Lineform<T>& b){
     return Lineform<T>::sum(a,b);
 }
 template <typename T>
-Lineform<T> operator - (Lineform<T> a, Lineform<T> b){
+Lineform<T> operator - (Lineform<T>& a, Lineform<T> b){
     return Lineform<T>::sum(a, b*= T(-1));
 }
 template<typename T>

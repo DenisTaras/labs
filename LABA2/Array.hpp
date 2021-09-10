@@ -16,9 +16,11 @@ public:
         m_capacity = 0;
     }
 
-
-    void Delete(){
-        delete[] this->m_data;
+    ~DynamicArray(){
+        if(m_data != nullptr){
+        delete[] m_data;
+        m_data = nullptr;
+        }
     }
     DynamicArray(int size){
         m_size = size;
@@ -41,7 +43,7 @@ public:
     }
 
     DynamicArray(const DynamicArray<T> &dynamicArray){
-        if(&dynamicArray == nullptr){
+        if(dynamicArray.m_data == nullptr){
             m_data = nullptr;
             m_size = 0;
             m_capacity = 0;
