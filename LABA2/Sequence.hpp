@@ -42,7 +42,7 @@ public:
 
     ArraySequence(LinkedList<T>& list){
         T* items;
-        items = (T*)malloc(sizeof(T)*(list.GetLength()));
+        items = new T [(list.GetLength())];
         for (int i = 0; i < list.GetLength(); ++i) {
             items[i] = list.Get(i);
         }
@@ -99,7 +99,7 @@ public:
         else return 0;
     }
     ArraySequence<T>* GetSubsequence(int startIndex,int endIndex){
-        T* items = (T*)malloc(sizeof(T)*(endIndex-startIndex));
+        T* items = new T [(endIndex-startIndex)];
         for (int i = startIndex; i < endIndex; ++i) {
             items[i-startIndex] = data.Get(i);
         }
@@ -109,7 +109,7 @@ public:
 
     ArraySequence<T>* Concat(Sequence<T>* list){
         if(list->GetLength() != 0){
-            T* items = (T*)malloc(sizeof(T)*(data.GetSize()+list->GetLength()));
+            T* items = new T [(data.GetSize()+list->GetLength())];
             for (int i = 0; i < data.GetSize(); ++i) {
                 items[i] = data.Get(i);
             }
@@ -163,7 +163,7 @@ public:
             data.Append(list->Get(i));
         }
         T* items;
-        items = (T*)malloc(sizeof(T*)*(data.GetLength()+list->GetLength()));
+        items = new T [(data.GetLength()+list->GetLength())];
         for (int i = 0; i < data.GetLength(); ++i) {
             items[i] = data.Get(i);
         }
@@ -180,7 +180,7 @@ public:
     LinkedListSequence<T>* GetSubsequence(int startIndex,int endIndex){
         LinkedList<T>* tmp = data.GetSubLinkedList(startIndex,endIndex);
         T* items;
-        items = (T*)malloc(sizeof(T*)*(endIndex-startIndex));
+        items = new T [(endIndex-startIndex)];
         for (int i = 0; i < endIndex-startIndex; ++i) {
             items[i] = tmp->Get(i);
         }

@@ -169,7 +169,7 @@ LinkedList<T>* LinkedList<T>::GetSubLinkedList(int startIndex,int endIndex){
         current = current->pNext;
     }
     T* items;
-    items = (T*)malloc(sizeof(T*)*(endIndex-startIndex));
+    items = new T [(endIndex-startIndex)];
     for (int i = 0; i < endIndex-startIndex; ++i) {
         items[i] = current->data;
         current = current->pNext;
