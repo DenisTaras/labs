@@ -42,7 +42,7 @@ class Tree{
         node<TV,TK>* a = find(key);
         return a->data;
     }
-
+    
     void insert(TK key,TV vall){
         if(root == nullptr){
         node<TV,TK>* new_node = new node<TV,TK>;
